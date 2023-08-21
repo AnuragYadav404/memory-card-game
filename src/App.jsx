@@ -34,7 +34,6 @@ function App() {
       if(score.current > best) {
         setBest(score.current);
       }
-      score.current = 0;
     } else {
       // add to selected array
       setSelected([...selected, name]);
@@ -45,6 +44,13 @@ function App() {
     }
   }
 
+  function handlePlayAgain() {
+    setGameOver((val) => !val);
+    score.current = 0;
+  }
+
+
+
   return (
     <div className="container">
       <h3>Dont select the same card twice</h3>
@@ -54,7 +60,7 @@ function App() {
         <div>
           <h1>GAME OVER!!!</h1>
           {score.current === pokemonData.length ? <h2>You WON!!</h2> : <h2>You Lost {':('}</h2>} 
-          <button onClick={() => setGameOver((val) => !val)}>Play Again</button>
+          <button onClick={handlePlayAgain}>Play Again</button>
         </div>
       )}
       {!gameOver && pokemonData && (
